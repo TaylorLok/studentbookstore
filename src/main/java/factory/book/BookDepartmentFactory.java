@@ -1,4 +1,14 @@
-package factory;
+package factory.book;
 
-public class BookDepartmentFactory {
+import company.ac.za.studentbookstore.domain.book.BookDepartment;
+
+public class BookDepartmentFactory
+{
+    public static BookDepartment getBookByDepartment(String book_Id,String department_Id,String description)
+    {
+        return new BookDepartment.Builder(book_Id)
+                                 .buildDepartmentId(department_Id)
+                                 .builderDescription(description)
+                                 .build();
+    }
 }

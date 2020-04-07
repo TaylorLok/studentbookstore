@@ -2,7 +2,12 @@ package company.ac.za.studentbookstore.domain.user;
 
 import javafx.util.Builder;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class UserDepartment {
+    @Id
     private String email;
     private String department_id;
     private String description;

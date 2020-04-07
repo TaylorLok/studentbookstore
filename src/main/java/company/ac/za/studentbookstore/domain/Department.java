@@ -2,8 +2,13 @@ package company.ac.za.studentbookstore.domain;
 
 import javafx.util.Builder;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Department
 {
+    @Id
     private String id;
     private String department_Name;
     private String description;

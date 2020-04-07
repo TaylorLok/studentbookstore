@@ -12,47 +12,24 @@ public class Book {
     private String edition;
     private double price;
 
-    private Book(){}// default constructor for the repository.book class only
+    private Book(){}// default constructor for the company.ac.za.studentbookstore.repository.book class only
 
     public String getId() {
         return id;
     }
-
-//    public void setId(String id) {
-//        this.id = id;
-//    }
-
     public String getTitle() {
         return title;
     }
-
-//    public void setTitle(String title) {
-//        this.title = title;
-//    }
-
     public String getLanguage() {
         return language;
     }
-
-//    public void setLanguage(String language) {
-//        this.language = language;
-//    }
-
     public String getEdition() {
         return edition;
     }
-
-//    public void setEdition(String edition) {
-//        this.edition = edition;
-//    }
-
     public double getPrice() {
         return price;
     }
 
-//    public void setPrice(double price) {
-//        this.price = price;
-//    }
     public Book(Builder builder)// this is the builder constructor
     {
         this.id = builder.id;
@@ -90,12 +67,6 @@ public class Book {
             return this;
         }
         public Book build(){
-//            Book repository.book=new Book();
-//            repository.book.edition=this.edition;
-//            repository.book.id=this.id;
-//            repository.book.language=this.language;
-//            repository.book.title=this.title;
-//            repository.book.price=this.price;
             return new Book(this);
         }
     }

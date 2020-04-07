@@ -1,10 +1,10 @@
 package company.ac.za.studentbookstore.controller.book;
-
 import company.ac.za.studentbookstore.controller.Icontroller;
 import company.ac.za.studentbookstore.domain.book.BookDepartment;
 import company.ac.za.studentbookstore.service.book.BookDepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import company.ac.za.studentbookstore.factory.domain.book.*;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ public class BookDepartmentController implements Icontroller<BookDepartment,Stri
     @PostMapping("/create")
     @Override
     public BookDepartment create(@RequestBody BookDepartment bookDepartment) {
+       // BookDepartment bookDepartment1=BookDepartmentFactory.getBookByDepartment(bookDepartment.getBook_Id(),bookDepartment.getDepartment_Id(),bookDepartment.getDescription());
         return bookDepartmentService.create(bookDepartment);
     }
 

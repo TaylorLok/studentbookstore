@@ -5,7 +5,7 @@ import company.ac.za.studentbookstore.domain.book.Book;
 import company.ac.za.studentbookstore.service.book.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import company.ac.za.studentbookstore.factory.domain.book.BookFactory;
+import company.ac.za.studentbookstore.factory.domain.book.*;
 
 import javax.swing.*;
 import java.util.List;
@@ -19,9 +19,9 @@ public class BookController implements Icontroller<Book,String> {
     @PostMapping("create")
     @Override
     public Book create(@RequestBody Book book) {
-        Book book1=BookF
-        System.out.println(book.toString());
-        return bookService.create(book);
+        Book book1=BookFactory.getBook(book.getTitle(),book.getLanguage(),book.getEdition(),book.getPrice());
+        System.out.println(book1.toString());
+        return bookService.create(book1);
     }
 
     @GetMapping("delete")

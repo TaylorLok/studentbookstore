@@ -41,7 +41,7 @@ public class Picture {
     public String toString() {
         return "Picture{" +
                 "id='" + id + '\'' +
-                ", picture=" + Arrays.toString(picture) +
+                ", factory.repository.picture=" + Arrays.toString(picture) +
                 ", description='" + description + '\'' +
                 '}';
     }

@@ -1,4 +1,4 @@
-package picture;
+package factory.picture;
 
 import company.ac.za.studentbookstore.domain.picture.Picture;
 

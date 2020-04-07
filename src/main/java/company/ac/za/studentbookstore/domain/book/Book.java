@@ -11,7 +11,8 @@ public class Book {
     private String language;
     private String edition;
     private double price;
-    private Book(Builder builder){}
+
+    private Book(){}// default constructor for the repository.book class only
 
     public String getId() {
         return id;
@@ -52,6 +53,15 @@ public class Book {
 //    public void setPrice(double price) {
 //        this.price = price;
 //    }
+    public Book(Builder builder)// this is the builder constructor
+    {
+        this.id = builder.id;
+        this.title = builder.title;
+        this.language = builder.language;
+        this.edition = builder.edition;
+        this.price = builder.price;
+    }
+
     public static class Builder{
         private String id;
         private String title;
@@ -80,12 +90,12 @@ public class Book {
             return this;
         }
         public Book build(){
-//            Book book=new Book();
-//            book.edition=this.edition;
-//            book.id=this.id;
-//            book.language=this.language;
-//            book.title=this.title;
-//            book.price=this.price;
+//            Book repository.book=new Book();
+//            repository.book.edition=this.edition;
+//            repository.book.id=this.id;
+//            repository.book.language=this.language;
+//            repository.book.title=this.title;
+//            repository.book.price=this.price;
             return new Book(this);
         }
     }

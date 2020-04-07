@@ -1,4 +1,4 @@
-package user;
+package factory.user;
 
 import company.ac.za.studentbookstore.domain.user.UserImage;
 

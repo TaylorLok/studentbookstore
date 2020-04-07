@@ -16,41 +16,39 @@ public class BookDepartment {
         return book_Id;
     }
 
-    public void setBook_Id(String book_Id) {
-        this.book_Id = book_Id;
-    }
+//    public void setBook_Id(String book_Id) {
+//        this.book_Id = book_Id;
+//    }
 
     public String getDepartment_Id() {
         return department_Id;
     }
 
-    public void setDepartment_Id(String department_Id) {
-        this.department_Id = department_Id;
-    }
+//    public void setDepartment_Id(String department_Id) {
+//        this.department_Id = department_Id;
+//    }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "BookDepartment{" +
-                "book_Id='" + book_Id + '\'' +
-                ", department_Id='" + department_Id + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
+    public BookDepartment(Builder builder)
+    {
+        this.book_Id = builder.book_Id;
+        this.department_Id = builder.department_Id;
+        this.description = builder.description;
     }
     public static class Builder{
         private String book_Id;
         private String department_Id;
         private String description;
 
-        public Builder(String book_Id){
+        public Builder BookId(String book_Id){
             this.book_Id=book_Id;
+            return this;
         }
         public Builder buildDepartmentId(String department_Id){
             this.department_Id=department_Id;
@@ -61,11 +59,17 @@ public class BookDepartment {
             return this;
         }
         public BookDepartment build(){
-            BookDepartment bookDepartment=new BookDepartment();
-            bookDepartment.book_Id=this.book_Id;
-            bookDepartment.department_Id=this.department_Id;
-            bookDepartment.description=this.description;
-            return bookDepartment;
+//            BookDepartment bookDepartment=new BookDepartment();
+//            bookDepartment.book_Id=this.book_Id;
+//            bookDepartment.department_Id=this.department_Id;
+//            bookDepartment.description=this.description;
+            return new BookDepartment(this);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "BookDepartment{" + "book_Id='" + book_Id + '\'' + ", " +
+                "department_Id='" + department_Id + '\'' + ", description='" + description + '\'' + '}';
     }
 }

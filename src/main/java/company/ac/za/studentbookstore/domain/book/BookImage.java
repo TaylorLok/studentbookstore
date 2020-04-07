@@ -15,41 +15,40 @@ public class BookImage {
         return book_id;
     }
 
-    public void setBook_id(String book_id) {
-        this.book_id = book_id;
-    }
+//    public void setBook_id(String book_id) {
+//        this.book_id = book_id;
+//    }
 
     public String getImage_id() {
         return image_id;
     }
 
-    public void setImage_id(String image_id) {
-        this.image_id = image_id;
-    }
+//    public void setImage_id(String image_id) {
+//        this.image_id = image_id;
+//    }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
 
-    @Override
-    public String toString() {
-        return "BookImage{" +
-                "book_id='" + book_id + '\'' +
-                ", image_id='" + image_id + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+    public BookImage (Builder builder)
+    {
+        this.book_id = builder.book_id;
+        this.image_id = builder.image_id;
+        this.description = builder.description;
     }
     public static class Builder{
         private String book_id;
         private String image_id;
         private String description;
 
-        public Builder(String book_id){
+        public Builder BookId(String book_id){
             this.book_id=book_id;
+            return this;
         }
         public Builder buildImageId(String image_id){
             this.image_id=image_id;
@@ -60,11 +59,19 @@ public class BookImage {
             return this;
         }
         public BookImage build(){
-            BookImage bookImage=new BookImage();
-            bookImage.book_id=this.book_id;
-            bookImage.description=this.description;
-            bookImage.image_id=this.image_id;
-            return bookImage;
+//            BookImage bookImage=new BookImage();
+//            bookImage.book_id=this.book_id;
+//            bookImage.description=this.description;
+//            bookImage.image_id=this.image_id;
+//            return bookImage;
+            return new BookImage(this);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "BookImage{" + "book_id='" + book_id + '\'' + ", " +
+                "image_id='" + image_id + '\'' + ", " +
+                "description='" + description + '\'' + '}';
     }
 }

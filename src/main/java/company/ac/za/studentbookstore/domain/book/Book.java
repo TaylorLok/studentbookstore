@@ -11,47 +11,57 @@ public class Book {
     private String language;
     private String edition;
     private double price;
-    private Book(){}
+
+    private Book(){}// default constructor for the repository.book class only
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+//    public void setId(String id) {
+//        this.id = id;
+//    }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+//    public void setTitle(String title) {
+//        this.title = title;
+//    }
 
     public String getLanguage() {
         return language;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
-    }
+//    public void setLanguage(String language) {
+//        this.language = language;
+//    }
 
     public String getEdition() {
         return edition;
     }
 
-    public void setEdition(String edition) {
-        this.edition = edition;
-    }
+//    public void setEdition(String edition) {
+//        this.edition = edition;
+//    }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+//    public void setPrice(double price) {
+//        this.price = price;
+//    }
+    public Book(Builder builder)// this is the builder constructor
+    {
+        this.id = builder.id;
+        this.title = builder.title;
+        this.language = builder.language;
+        this.edition = builder.edition;
+        this.price = builder.price;
     }
+
     public static class Builder{
         private String id;
         private String title;
@@ -59,8 +69,9 @@ public class Book {
         private String edition;
         private double price;
 
-        public Builder(String id){
+        public Builder Id(String id){
             this.id=id;
+            return this;
         }
         public Builder buildTitle(String title){
             this.title=title;
@@ -74,18 +85,24 @@ public class Book {
             this.edition=edition;
             return this;
         }
-        public Builder buildPrice(double price){
+        public Builder Price(double price){
             this.price=price;
             return this;
         }
         public Book build(){
-            Book book=new Book();
-            book.edition=this.edition;
-            book.id=this.id;
-            book.language=this.language;
-            book.title=this.title;
-            book.price=this.price;
-            return book;
+//            Book repository.book=new Book();
+//            repository.book.edition=this.edition;
+//            repository.book.id=this.id;
+//            repository.book.language=this.language;
+//            repository.book.title=this.title;
+//            repository.book.price=this.price;
+            return new Book(this);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" + "id='" + id + '\'' + ", title='" + title +
+                '\'' + ", language='" + language + '\'' + ", edition='" + edition + '\'' + ", price=" + price + '}';
     }
 }

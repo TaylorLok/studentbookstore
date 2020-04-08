@@ -41,7 +41,7 @@ public class Picture {
     public String toString() {
         return "Picture{" +
                 "id='" + id + '\'' +
-                ", company.ac.za.studentbookstore.factory.company.ac.za.studentbookstore.repository.picture=" + Arrays.toString(picture) +
+                ", company.ac.za.studentbookstore.factory.company.ac.za.studentbookstore.repository.company.ac.za.studentbookstore.service.picture=" + Arrays.toString(picture) +
                 ", description='" + description + '\'' +
                 '}';
     }

@@ -235,7 +235,7 @@ else
         if [ -z "$MVNW_USERNAME" ] || [ -z "$MVNW_PASSWORD" ]; then
             wget "$jarUrl" -O "$wrapperJarPath"
         else
-            wget --http-company.ac.za.studentbookstore.factory.company.ac.za.studentbookstore.repository.user=$MVNW_USERNAME --http-password=$MVNW_PASSWORD "$jarUrl" -O "$wrapperJarPath"
+            wget --http-company.ac.za.studentbookstore.factory.company.ac.za.studentbookstore.repository.company.ac.za.studentbookstore.service.user=$MVNW_USERNAME --http-password=$MVNW_PASSWORD "$jarUrl" -O "$wrapperJarPath"
         fi
     elif command -v curl > /dev/null; then
         if [ "$MVNW_VERBOSE" = true ]; then
@@ -244,7 +244,7 @@ else
         if [ -z "$MVNW_USERNAME" ] || [ -z "$MVNW_PASSWORD" ]; then
             curl -o "$wrapperJarPath" "$jarUrl" -f
         else
-            curl --company.ac.za.studentbookstore.factory.company.ac.za.studentbookstore.repository.user $MVNW_USERNAME:$MVNW_PASSWORD -o "$wrapperJarPath" "$jarUrl" -f
+            curl --company.ac.za.studentbookstore.factory.company.ac.za.studentbookstore.repository.company.ac.za.studentbookstore.service.user $MVNW_USERNAME:$MVNW_PASSWORD -o "$wrapperJarPath" "$jarUrl" -f
         fi
 
     else

@@ -13,7 +13,6 @@ import java.util.Optional;
 public class UserDepartmentService implements IService<UserDepartment,String>
 {
     private static UserDepartmentService userDepartmentService;
-
     @Autowired
     private UserDepartmentRepository userDepartmentRepository;
 

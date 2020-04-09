@@ -13,7 +13,6 @@ import java.util.Optional;
 public class UserImageService implements IService<UserImage,String>
 {
     private static UserImageService userImageService;
-
     @Autowired
     private UserImageRepository userImageRepository;
 

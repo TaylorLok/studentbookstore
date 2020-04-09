@@ -13,7 +13,6 @@ import java.util.Optional;
 public class UserService implements IService<User,String>
 {
     private static UserService userService;
-
     @Autowired
     private UserRepository userRepository;
 

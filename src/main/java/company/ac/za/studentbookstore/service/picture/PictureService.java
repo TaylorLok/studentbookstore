@@ -39,7 +39,7 @@ public class PictureService implements IService<Picture,String>
             return result.get();
         }
        return null;
-//        this.pictureRepository.delete(picture);
+//        this.pictureRepository.delete(company.ac.za.studentbookstore.controller.picture);
 //        return null;
     }
 
@@ -51,7 +51,7 @@ public class PictureService implements IService<Picture,String>
     }
 
     /**
-     * if the picture exist then, we delete the existing picture and now save the new update
+     * if the company.ac.za.studentbookstore.controller.picture exist then, we delete the existing company.ac.za.studentbookstore.controller.picture and now save the new update
      * **/
     @Override
     public Picture update(Picture picture)

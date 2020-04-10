@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("/department/")
+@RequestMapping("sts/department/")
 public class DepartmentController implements Icontroller<Department,String>
 {
     @Autowired
@@ -18,7 +18,7 @@ public class DepartmentController implements Icontroller<Department,String>
     @Override
     public Department create(@RequestBody Department department)
     {
-        Department department1 = DepartmentFactory.getDepartment(department.getId(),department.getDepartment_Name(),department.getDescription());
+        Department department1 = DepartmentFactory.getDepartment(department.getDepartment_Name(),department.getDescription());
         System.out.println(department.toString());
         return departmentService.create(department1);
     }

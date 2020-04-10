@@ -27,8 +27,8 @@ public class BookDepartmentService implements IService<BookDepartment, String> {
 
     @Override
     public BookDepartment delete(BookDepartment bookDepartment) {
-        Optional<BookDepartment> result=bookDepartmentRepository.findById(bookDepartment.getBook_Id());
-        if(result.get()!=null){
+       BookDepartment bookDepartment1=read(bookDepartment.getBook_Id());
+        if(bookDepartment1!=null){
             bookDepartmentRepository.delete(bookDepartment);
             return bookDepartment;
         }

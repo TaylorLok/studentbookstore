@@ -20,9 +20,9 @@ public class UserDepartmentController implements Icontroller<UserDepartment,Stri
     @Override
     public UserDepartment create( @RequestBody UserDepartment userDepartment)
     {
-        UserDepartment user = UserDepartmentFactory.getUserDept(userDepartment.getDepartment_id(),userDepartment.getEmail(),userDepartment.getDescription());
-        System.out.println(user.toString());
-        return userDepartmentService.create(user);
+        //UserDepartment user = UserDepartmentFactory.getUserDept(userDepartment.getDepartment_id(),userDepartment.getEmail(),userDepartment.getDescription());
+        //System.out.println(user.toString());
+        return userDepartmentService.create(userDepartment);
     }
 
     @GetMapping("delete")

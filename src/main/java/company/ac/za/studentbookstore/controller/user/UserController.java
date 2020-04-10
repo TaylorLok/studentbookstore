@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user/")
+@RequestMapping("sts/user/")
 public class UserController implements Icontroller<User,String>
 {
     @Autowired
@@ -20,9 +20,9 @@ public class UserController implements Icontroller<User,String>
     @Override
     public User create( @RequestBody User user)
     {
-        User user1 = UserFactory.getUser(user.getName(),user.getSurname(),user.getPhoneNumber(),user.getEmail());
-        System.out.println(user.toString());
-        return userService.create(user1);
+        //User user1 = UserFactory.getUser(user.getName(),user.getSurname(),user.getPhoneNumber(),user.getEmail());
+        //System.out.println(user.toString());
+        return userService.create(user);
     }
     @GetMapping("delete")
     @Override

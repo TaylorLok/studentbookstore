@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("sts/book_image")
+@RequestMapping("sts/bookimage/")
 public class BookImageController implements Icontroller<BookImage,String> {
     @Autowired
     BookImageService bookImageService;
@@ -17,6 +17,7 @@ public class BookImageController implements Icontroller<BookImage,String> {
     @PostMapping("create")
     @Override
     public BookImage create(@RequestBody BookImage bookImage) {
+        System.out.println(bookImage.toString());
         return bookImageService.create(bookImage);
     }
 

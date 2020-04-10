@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("location")
+@RequestMapping("sts/location/")
 public class LocationController implements Icontroller<Location,String>
 {
     @Autowired
@@ -18,7 +18,7 @@ public class LocationController implements Icontroller<Location,String>
     @Override
     public Location create(@RequestBody Location location)
     {
-        Location location1 = LocationFactory.getLocation(location.getId(),location.getTitle(),location.getLongitude(),location.getLatitude(),location.getDescription());
+        Location location1 = LocationFactory.getLocation(location.getTitle(),location.getLongitude(),location.getLatitude(),location.getDescription());
         System.out.println(location.toString());
         return locationService.create(location1);
     }

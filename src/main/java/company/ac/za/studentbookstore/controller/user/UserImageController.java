@@ -20,9 +20,9 @@ public class UserImageController implements Icontroller<UserImage,String>
     @Override
     public UserImage create(@RequestBody UserImage userImage)
     {
-        UserImage userImage1 = UserImageFactory.getUserImage(userImage.getImage_id(),userImage.getEmail(),userImage.getDescription(),userImage.getDate());
-        System.out.println(userImage.toString());
-        return userImageService.create(userImage1);
+        //UserImage userImage1 = UserImageFactory.getUserImage(userImage.getImage_id(),userImage.getEmail(),userImage.getDescription(),userImage.getDate());
+        //System.out.println(userImage.toString());
+        return userImageService.create(userImage);
     }
 
     @GetMapping("delete")

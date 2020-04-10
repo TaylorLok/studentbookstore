@@ -9,7 +9,7 @@ import company.ac.za.studentbookstore.factory.domain.book.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("sts/book_department")
+@RequestMapping("sts/bookdepartment")
 public class BookDepartmentController implements Icontroller<BookDepartment,String> {
     @Autowired
     BookDepartmentService bookDepartmentService;
@@ -21,7 +21,7 @@ public class BookDepartmentController implements Icontroller<BookDepartment,Stri
         return bookDepartmentService.create(bookDepartment);
     }
 
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     @Override
     public BookDepartment delete(@RequestBody BookDepartment bookDepartment) {
         return bookDepartmentService.delete(bookDepartment);

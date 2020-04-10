@@ -24,9 +24,10 @@ public class BookController implements Icontroller<Book,String> {
         return bookService.create(book1);
     }
 
-    @GetMapping("delete")
+    @PostMapping("delete")
     @Override
     public Book delete(@RequestBody Book book) {
+        //System.out.println(book+" the book");
         return bookService.delete(book);
     }
 

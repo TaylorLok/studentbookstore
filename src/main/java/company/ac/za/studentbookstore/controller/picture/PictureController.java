@@ -20,7 +20,7 @@ public class PictureController implements Icontroller<Picture,String>
     @Override
     public Picture create(@RequestBody Picture picture)
     {
-        Picture picture1 = PictureFactory.getPicture(picture.getId(),picture.getPicture(),picture.getDescription());
+        Picture picture1 = PictureFactory.getPicture(picture.getPicture(),picture.getDescription());
         System.out.println(picture.toString());
         return pictureService.create(picture1);
     }

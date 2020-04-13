@@ -2,7 +2,10 @@ package company.ac.za.studentbookstore.controller.user;
 
 import company.ac.za.studentbookstore.controller.Icontroller;
 import company.ac.za.studentbookstore.domain.user.User;
+import company.ac.za.studentbookstore.domain.user.UserAccount;
+import company.ac.za.studentbookstore.factory.domain.user.UserAccountFactory;
 import company.ac.za.studentbookstore.factory.domain.user.UserFactory;
+import company.ac.za.studentbookstore.service.user.UserAccountService;
 import company.ac.za.studentbookstore.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,14 +18,21 @@ public class UserController implements Icontroller<User,String>
 {
     @Autowired
     UserService userService;
+    @Autowired
+    UserAccountService userAccountService;
 
     @PostMapping("create")
     @Override
-    public User create( @RequestBody User user)
-    {
-        //User user1 = UserFactory.getUser(user.getName(),user.getSurname(),user.getPhoneNumber(),user.getEmail());
-        //System.out.println(user.toString());
+    public User create( @RequestBody User user) {
+        /****
+         * we need to create a user account first
+         * and send him/her an email with random password
+         */
+        UserAccount userAccount= UserAccountFactory.getUseraccount(user.getEmail());
+        userAccountService.create(userAccount);
+        // TODO: 4/14/2020 start email service that will send this user an email here.
         return userService.create(user);
+
     }
     @GetMapping("delete")
     @Override

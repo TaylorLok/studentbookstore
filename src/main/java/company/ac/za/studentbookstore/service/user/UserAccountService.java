@@ -56,10 +56,11 @@ public class UserAccountService implements IService<UserAccount,String> {
     public List<UserAccount> readAll() {
         return userAccountRepository.findAll();
     }
+
     public UserAccount logIn(String email,String password){
-        List<UserAccount> allUsers=userAccountRepository.findAll();
-        for (UserAccount userAccount:allUsers){
-            if(userAccount.getEmail()==email && userAccount.getPassword()==password){
+       // List<UserAccount> allUsers=userAccountRepository.
+        for (UserAccount userAccount:userAccountRepository.findAll()){
+            if(userAccount.getEmail().equals(email) || userAccount.getPassword().equals(password)){
                 return userAccount;
             }
         }

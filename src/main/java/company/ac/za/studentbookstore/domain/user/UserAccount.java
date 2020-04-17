@@ -38,16 +38,6 @@ public class UserAccount {
         return date;
     }
 
-    @Override
-    public String toString() {
-        return "UserAccount{" +
-                "email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", account_status='" + account_status + '\'' +
-                ", date=" + date +
-                '}';
-    }
-
     public static class Builder{
         private String email;
         private String password;
@@ -73,4 +63,15 @@ public class UserAccount {
             return new UserAccount(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return "UserAccount{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", account_status='" + account_status + '\'' +
+                ", date=" + date +
+                '}';
+    }
+
 }

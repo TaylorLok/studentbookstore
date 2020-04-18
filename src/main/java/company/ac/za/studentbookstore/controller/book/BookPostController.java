@@ -42,4 +42,8 @@ public class BookPostController implements Icontroller<BookPost,String> {
     public List<BookPost> readAll() {
         return bookPostService.readAll();
     }
+    @GetMapping("readWithbookId")
+    public BookPost readwithBookId(@RequestParam("id") String id){
+        return bookPostService.readwithBookId(id);
+    }
 }

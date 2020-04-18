@@ -44,8 +44,7 @@ public class PictureService implements IService<Picture,String>
     }
 
     @Override
-    public Picture read(String id)
-    {
+    public Picture read(String id) {
        Optional<Picture>result = pictureRepository.findById(id);
         return result.orElse(null);
     }
@@ -68,5 +67,12 @@ public class PictureService implements IService<Picture,String>
     @Override
     public List<Picture> readAll() {
         return pictureRepository.findAll();
+    }
+    public Picture getFirstpicture(String id){
+        for(Picture picture:readAll()){
+            if(picture.getId().equals(id)&&picture.getDescription().equals("fist picture")){
+                return picture;
+            }
+        }return null;
     }
 }

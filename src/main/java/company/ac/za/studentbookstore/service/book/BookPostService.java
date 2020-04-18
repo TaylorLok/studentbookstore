@@ -56,4 +56,11 @@ public class BookPostService implements IService<BookPost,String> {
         Optional<BookPost> result=bookPostRepository.findById(id);
         return result.orElse(null);
     }
+    public BookPost readwithBookId(String id){
+        for(BookPost bookPost:readAll()){
+            if(bookPost.getBook_id().equals(id)){
+                return bookPost;
+            }
+        }return null;
+    }
 }

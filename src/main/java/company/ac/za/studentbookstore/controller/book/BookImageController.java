@@ -17,7 +17,7 @@ public class BookImageController implements Icontroller<BookImage,String> {
     @PostMapping("create")
     @Override
     public BookImage create(@RequestBody BookImage bookImage) {
-        System.out.println(bookImage.toString());
+        //System.out.println(bookImage.toString());
         return bookImageService.create(bookImage);
     }
 

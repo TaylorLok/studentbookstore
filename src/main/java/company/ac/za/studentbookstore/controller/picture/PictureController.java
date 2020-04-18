@@ -7,10 +7,11 @@ import company.ac.za.studentbookstore.service.picture.PictureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Base64;
 import java.util.List;
 
 @RestController
-@RequestMapping("/picture/")
+@RequestMapping("sts/picture/")
 public class PictureController implements Icontroller<Picture,String>
 {
     @Autowired
@@ -18,10 +19,10 @@ public class PictureController implements Icontroller<Picture,String>
 
     @PostMapping("create")
     @Override
-    public Picture create(@RequestBody Picture picture)
-    {
-        Picture picture1 = PictureFactory.getPicture(picture.getPicture(),picture.getDescription());
-        System.out.println(picture.toString());
+    public Picture create(@RequestBody Picture picture) {
+        //System.out.println(picture.toString());
+        Picture picture1 = PictureFactory.getPicture(decoreder(picture.getPicture()),picture.getDescription());
+        //System.out.println(picture.toString());
         return pictureService.create(picture1);
     }
 
@@ -34,8 +35,8 @@ public class PictureController implements Icontroller<Picture,String>
 
     @GetMapping("read")
     @Override
-    public Picture read(@RequestParam("id") String id)
-    {
+    public Picture read(@RequestParam("id") String id) {
+        System.out.println("we are reading a picture");
         return pictureService.read(id);
     }
 
@@ -51,5 +52,15 @@ public class PictureController implements Icontroller<Picture,String>
     public List<Picture> readAll()
     {
         return pictureService.readAll();
+    }
+    @GetMapping("readfirst")
+    public Picture readFirstPicture(@RequestParam("id") String id){
+        return pictureService.getFirstpicture(id);
+    }
+
+    public byte[] decoreder(byte[] image) {
+        String encodedString = Base64.getEncoder().encodeToString(image);
+        byte[] byteArrray = encodedString.getBytes();
+        return byteArrray;
     }
 }

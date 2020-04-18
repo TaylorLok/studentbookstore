@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
 
 class BookFactoryTest {
-Book book=BookFactory.getBook("bible","franch","louis second",2000);
+Book book=BookFactory.getBook("bible","franch","louis second",2000,"louisecond");
     @Test
     void getBook() {
         Assert.isInstanceOf(Book.class,book);// checking if the object is an instance of Book class.

@@ -12,4 +12,7 @@ public class PictureFactory
                           .buildDescription(description)
                           .build();
     }
+    public static Picture getDecodedPicture(String id,byte[] picture,String description){
+        return new Picture.Builder(id).buildDescription(description).buildPicture(picture).build();
+    }
 }

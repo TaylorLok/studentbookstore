@@ -30,7 +30,7 @@ public class BookImageService implements IService<BookImage,String> {
         BookImage bookImage1=read(bookImage.getBook_id()); //checking if it exists in the database
         if(bookImage1!=null) {
             bookImageRepository.delete(bookImage);
-            System.out.println(bookImage);
+            //System.out.println(bookImage);
             return bookImage;
         }
         return null;
@@ -49,6 +49,13 @@ public class BookImageService implements IService<BookImage,String> {
             return bookImage;
         }
         return null;
+    }
+    public BookImage readWithBookId(String id){
+        for(BookImage bookImage:readAll()){
+            if(bookImage.getBook_id().equals(id)){
+                return bookImage;
+            }
+        }return null;
     }
 
     @Override

@@ -21,7 +21,7 @@ public class PictureController implements Icontroller<Picture,String>
     @Override
     public Picture create(@RequestBody Picture picture) {
         //System.out.println(picture.toString());
-        Picture picture1 = PictureFactory.getPicture(decoreder(picture.getPicture()),picture.getDescription());
+        Picture picture1 = PictureFactory.getPicture(encodeIntoByteArray(picture.getPicture()),picture.getDescription());
         //System.out.println(picture.toString());
         return pictureService.create(picture1);
     }
@@ -33,11 +33,15 @@ public class PictureController implements Icontroller<Picture,String>
         return pictureService.delete(picture);
     }
 
+    //I have converted the picture into a string taking a place of the id.
     @GetMapping("read")
     @Override
     public Picture read(@RequestParam("id") String id) {
-        System.out.println("we are reading a picture");
-        return pictureService.read(id);
+        System.out.println("we are reading a picture");//Base64.getEncoder().encodeToString(
+        Picture picture=pictureService.read(id);
+        Picture pictureToReturn=PictureFactory.getDecodedPicture(Base64.getEncoder().encodeToString(picture.getPicture()),picture.getPicture(),picture.getDescription());
+        System.out.println(pictureToReturn.getId());
+        return pictureToReturn;
     }
 
     @GetMapping("update")
@@ -53,14 +57,40 @@ public class PictureController implements Icontroller<Picture,String>
     {
         return pictureService.readAll();
     }
+
+    /****
+     * I have converted the picture into a string taking a place of the id.
+     * we don't need the id when returning the answer to the user.
+     *
+     * ***/
     @GetMapping("readfirst")
-    public Picture readFirstPicture(@RequestParam("id") String id){
-        return pictureService.getFirstpicture(id);
+    public Picture readFirstPicture(@RequestParam("id") String id){//Base64.getDecoder().decode(encodedString);
+        Picture picture=pictureService.getFirstpicture(id);
+        byte[] fack = new byte[0]; // just send an empty byte array.
+        if(picture!=null) {
+            Picture pictureToReturn = PictureFactory.getDecodedPicture(decodeIntoString(picture.getPicture()), fack, picture.getDescription());
+            //System.out.println(pictureToReturn.getPicture());
+            return pictureToReturn;
+        }
+        return null;
     }
 
-    public byte[] decoreder(byte[] image) {
+    public byte[] encodeIntoByteArray(byte[] image) {
         String encodedString = Base64.getEncoder().encodeToString(image);
         byte[] byteArrray = encodedString.getBytes();
         return byteArrray;
     }
+
+    /**
+     * Now we first decode the Byte Array
+     * then convert into a string
+     * **/
+
+    public String decodeIntoString(byte[] picture){
+        byte[] byteArrayPicture=Base64.getDecoder().decode(picture);
+        String stringPicture=Base64.getEncoder().encodeToString(byteArrayPicture);
+        return stringPicture;
+
+    }
+
 }

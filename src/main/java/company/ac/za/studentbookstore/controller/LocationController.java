@@ -27,10 +27,11 @@ public class LocationController implements Icontroller<Location,String>
     @Override
     public Location delete(@RequestBody Location location)
     {
-        return locationService.delete(location);
+        Location location1=LocationFactory.getLocation(location.getTitle(),location.getLongitude(),location.getLatitude(),location.getDescription());
+        return locationService.delete(location1);
     }
 
-    @GetMapping
+    @GetMapping("read")
     @Override
     public Location read(@RequestParam("id") String id)
     {

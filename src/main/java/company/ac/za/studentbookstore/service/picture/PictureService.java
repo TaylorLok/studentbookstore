@@ -68,6 +68,7 @@ public class PictureService implements IService<Picture,String>
     public List<Picture> readAll() {
         return pictureRepository.findAll();
     }
+
     public Picture getFirstpicture(String id){
         for(Picture picture:readAll()){
             if(picture.getId().equals(id)&&picture.getDescription().equals("fist picture")){

@@ -71,7 +71,7 @@ public class PictureService implements IService<Picture,String>
 
     public Picture getFirstpicture(String id){
         for(Picture picture:readAll()){
-            if(picture.getId().equals(id)&&picture.getDescription().equals("fist picture")){
+            if(picture.getId().equals(id)){
                 return picture;
             }
         }return null;

@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("sts/picture/")
@@ -50,7 +50,7 @@ public class PictureController implements Icontroller<Picture, String> {
     public Picture read(@RequestParam("id") String id) {
         System.out.println("we are reading a picture");//Base64.getEncoder().encodeToString(
         Picture picture = pictureService.read(id);
-        Picture pictureToReturn = PictureFactory.getDecodedPicture(Base64.getEncoder().encodeToString(picture.getPicture()), picture.getPicture(), picture.getDescription());
+        Picture pictureToReturn = PictureFactory.getDecodablePicture(Base64.getEncoder().encodeToString(picture.getPicture()), picture.getPicture(), picture.getDescription());
         System.out.println(pictureToReturn.getId());
         return pictureToReturn;
     }
@@ -77,11 +77,22 @@ public class PictureController implements Icontroller<Picture, String> {
         Picture picture = pictureService.getFirstpicture(id);
         byte[] fack = new byte[0]; // just send an empty byte array.
         if (picture != null) {
-            Picture pictureToReturn = PictureFactory.getDecodedPicture(decodeIntoString(picture.getPicture()), fack, picture.getDescription());
+            Picture pictureToReturn = PictureFactory.getDecodablePicture(decodeIntoString(picture.getPicture()), fack, picture.getDescription());
             //System.out.println(pictureToReturn.getPicture());
             return pictureToReturn;
         }
         return null;
+    }
+
+    @PostMapping("readAllOf")
+    public List<Picture> readAllOf(@RequestBody List <String> ids){
+        byte[] fack = new byte[0]; // just send an empty byte array.
+        List<Picture> picture = new ArrayList<>();
+        for(Picture picture1: pictureService.readAllOf(ids)){
+            Picture picture2=PictureFactory.getDecodablePicture(decodeIntoString(picture1.getPicture()),fack,picture1.getDescription());
+            picture.add(picture2);
+        }
+        return picture;
     }
 
     public byte[] encodeIntoByteArray(byte[] image) {

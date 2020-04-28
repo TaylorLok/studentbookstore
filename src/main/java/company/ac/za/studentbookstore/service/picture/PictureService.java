@@ -6,6 +6,7 @@ import company.ac.za.studentbookstore.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,5 +76,11 @@ public class PictureService implements IService<Picture,String>
                 return picture;
             }
         }return null;
+    }
+    public List<Picture> readAllOf(List<String> ids){
+        List <Picture> pictures = new ArrayList<>();
+        for(String id:ids){
+            pictures.add(read(id));
+        }return pictures;
     }
 }

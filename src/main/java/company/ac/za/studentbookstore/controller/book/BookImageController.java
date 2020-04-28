@@ -48,4 +48,8 @@ public class BookImageController implements Icontroller<BookImage,String> {
     public BookImage readWithBookId(@RequestParam("id") String id) {
         return bookImageService.readWithBookId(id);
     }
+    @GetMapping("readAllOf")
+    public List<BookImage> readAllOf(@RequestParam("id") String id){
+        return bookImageService.readAllOf(id);
+    }
 }

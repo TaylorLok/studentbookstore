@@ -6,6 +6,7 @@ import company.ac.za.studentbookstore.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,5 +66,14 @@ public class BookImageService implements IService<BookImage,String> {
     public BookImage checkIf(String id){
         Optional<BookImage>result =bookImageRepository.findById(id);
         return result.orElse(null);
+    }
+    public List<BookImage> readAllOf(String id){
+        List<BookImage> bookImages=new ArrayList<>();
+        for(BookImage bookImage:readAll()){
+            if(bookImage.getBook_id().equals(id)){
+                bookImages.add(bookImage);
+            }
+        }
+        return bookImages;
     }
 }

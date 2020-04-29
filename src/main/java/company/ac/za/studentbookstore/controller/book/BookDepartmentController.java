@@ -44,4 +44,9 @@ public class BookDepartmentController implements Icontroller<BookDepartment,Stri
     public List<BookDepartment> readAll() {
         return bookDepartmentService.readAll();
     }
+    @GetMapping("readAllOf")
+    public List<BookDepartment> reafAllOf(@RequestParam("id") String departmentId){
+        return bookDepartmentService.readAllOf(departmentId);
+    }
+
 }

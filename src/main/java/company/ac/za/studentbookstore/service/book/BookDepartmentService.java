@@ -6,6 +6,7 @@ import company.ac.za.studentbookstore.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +51,15 @@ public class BookDepartmentService implements IService<BookDepartment, String> {
             return bookDepartment;
         }
         return null;
+    }
+    public List<BookDepartment> readAllOf(String id){
+        List<BookDepartment> bookDepartments = new ArrayList<>();
+        for(BookDepartment bookDepartment: readAll()){
+            if(bookDepartment.getDepartment_Id().equals(id)){
+                bookDepartments.add(bookDepartment);
+            }
+        }
+        return bookDepartments;
     }
 
     @Override

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/userdepartment/")
+@RequestMapping("sts/user_department/")
 public class UserDepartmentController implements Icontroller<UserDepartment,String>
 {
     @Autowired

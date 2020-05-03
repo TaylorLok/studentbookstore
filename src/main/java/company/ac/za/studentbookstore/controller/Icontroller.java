@@ -7,6 +7,6 @@ public interface Icontroller<T,t> {
     T create(T t) throws IOException;
     T delete(T t);
     T read(String id);
-    T update(T t);
+    T update(T t) throws IOException;
     List<T> readAll();
 }

@@ -55,10 +55,22 @@ public class PictureController implements Icontroller<Picture, String> {
         return pictureToReturn;
     }
 
-    @GetMapping("update")
+    @PostMapping("update")
     @Override
-    public Picture update(@RequestBody Picture picture) {
-        return pictureService.update(picture);
+    public Picture update(@RequestBody Picture picture) throws IOException {
+        // When a picture gets in here we first write it as a jpg file
+        pictureWriter(picture.getPicture());
+        //Then we resize the picture
+        ImageResizer.getResizedImage();
+        //Now we convert to byte array so that we can save it
+        byte[] resizedPicture= convertToBytes();
+        //Lastly we have to delete the file
+        deleteFile();
+        // In this line we encode the byteArray so that we can save a small data
+        Picture picture1 = PictureFactory.getDecodablePicture(picture.getId(),encodeIntoByteArray(resizedPicture), picture.getDescription());
+        //System.out.println(picture.toString());
+        return pictureService.create(picture1);
+        
     }
 
     @GetMapping("reads")
@@ -84,12 +96,20 @@ public class PictureController implements Icontroller<Picture, String> {
         return null;
     }
 
+    /***
+     * !!!!!!!!!!!
+     * Be careful, the return of the following method has a reversed items int he object.
+     * i have returned base64 string on the place of pictureId and the picture id in th place of description
+     * !!!!!!!!!
+     * @param ids
+     * @return
+     */
     @PostMapping("readAllOf")
     public List<Picture> readAllOf(@RequestBody List <String> ids){
         byte[] fack = new byte[0]; // just send an empty byte array.
         List<Picture> picture = new ArrayList<>();
         for(Picture picture1: pictureService.readAllOf(ids)){
-            Picture picture2=PictureFactory.getDecodablePicture(decodeIntoString(picture1.getPicture()),fack,picture1.getDescription());
+            Picture picture2=PictureFactory.getDecodablePicture(decodeIntoString(picture1.getPicture()),fack,picture1.getId());
             picture.add(picture2);
         }
         return picture;

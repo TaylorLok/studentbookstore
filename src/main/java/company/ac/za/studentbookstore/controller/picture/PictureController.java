@@ -38,7 +38,7 @@ public class PictureController implements Icontroller<Picture, String> {
         return pictureService.create(picture1);
     }
 
-    @GetMapping("delete")
+    @PostMapping("delete")
     @Override
     public Picture delete(@RequestBody Picture picture) {
         return pictureService.delete(picture);
@@ -51,10 +51,14 @@ public class PictureController implements Icontroller<Picture, String> {
         System.out.println("we are reading a picture");//Base64.getEncoder().encodeToString(
         Picture picture = pictureService.read(id);
         Picture pictureToReturn = PictureFactory.getDecodablePicture(Base64.getEncoder().encodeToString(picture.getPicture()), picture.getPicture(), picture.getDescription());
-        System.out.println(pictureToReturn.getId());
+       // System.out.println(pictureToReturn.getId());
         return pictureToReturn;
     }
-
+    //This method is made to allow the front end to receive all the complete field of the object contrairy to the up read method that replace string 64 in the place of pictureId
+    @GetMapping("readComplete")
+    public Picture readComplete(@RequestParam("id") String id){
+        return pictureService.read(id);
+    }
     @PostMapping("update")
     @Override
     public Picture update(@RequestBody Picture picture) throws IOException {

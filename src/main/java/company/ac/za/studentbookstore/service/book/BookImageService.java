@@ -28,11 +28,11 @@ public class BookImageService implements IService<BookImage,String> {
 
     @Override
     public BookImage delete(BookImage bookImage) {
-        BookImage bookImage1=read(bookImage.getBook_id()); //checking if it exists in the database
+        BookImage bookImage1=read(bookImage.getImage_id()); //checking if it exists in the database
         if(bookImage1!=null) {
             bookImageRepository.delete(bookImage);
             //System.out.println(bookImage);
-            return bookImage;
+            return bookImage1;
         }
         return null;
     }

@@ -23,12 +23,12 @@ public class LocationController implements Icontroller<Location,String>
         return locationService.create(location1);
     }
 
-    @GetMapping("delete")
+    @PostMapping("delete")
     @Override
     public Location delete(@RequestBody Location location)
     {
-        Location location1=LocationFactory.getLocation(location.getTitle(),location.getLongitude(),location.getLatitude(),location.getDescription());
-        return locationService.delete(location1);
+        //Location location1=LocationFactory.getLocation(location.getTitle(),location.getLongitude(),location.getLatitude(),location.getDescription());
+        return locationService.delete(location);
     }
 
     @GetMapping("read")
@@ -38,7 +38,7 @@ public class LocationController implements Icontroller<Location,String>
         return locationService.read(id);
     }
 
-    @GetMapping("update")
+    @PostMapping("update")
     @Override
     public Location update(@RequestBody Location location)
     {

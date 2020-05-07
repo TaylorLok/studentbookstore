@@ -29,7 +29,6 @@ public class BookLanguageService  implements IService<BookLanguage,String> {
     @Override
     public BookLanguage delete(BookLanguage bookLanguage) {
         BookLanguage bookLanguage1 = getBookLanguage(bookLanguage.getBookId());
-
         if(bookLanguage1 != null){
             bookLanguageRepository.delete(bookLanguage1);
             return bookLanguage1;

@@ -53,9 +53,9 @@ public class LocationService implements IService<Location,String>
     public Location update(Location location)
     {
         Location location1 = read(location.getId());
-        if(location1==null)
+        if(location1!=null)
         {
-            delete(location1);
+            locationRepository.delete(location1);
             return locationRepository.save(location);
         }
         return null;

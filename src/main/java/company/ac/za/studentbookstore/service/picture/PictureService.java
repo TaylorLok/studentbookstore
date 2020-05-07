@@ -32,33 +32,27 @@ public class PictureService implements IService<Picture,String>
     }
 
     @Override
-    public Picture delete(Picture picture)
-    {
-        Optional<Picture> result = pictureRepository.findById(picture.getId());
-        if (result.get()!=null){
-            pictureRepository.delete(picture);
-            return result.get();
+    public Picture delete(Picture picture) {
+        Picture result = getpicture(picture.getId());
+        if (result!=null){
+            pictureRepository.delete(result);
+            return result;
         }
        return null;
-//        this.pictureRepository.delete(company.ac.za.studentbookstore.controller.picture);
-//        return null;
     }
 
     @Override
     public Picture read(String id) {
-       Optional<Picture>result = pictureRepository.findById(id);
-        return result.orElse(null);
+        return getpicture(id);
     }
 
     /**
      * if the company.ac.za.studentbookstore.controller.picture exist then, we delete the existing company.ac.za.studentbookstore.controller.picture and now save the new update
      * **/
     @Override
-    public Picture update(Picture picture)
-    {
+    public Picture update(Picture picture) {
         Picture picture1 = read(picture.getId());
-        if(picture1!=null)
-        {
+        if(picture1!=null) {
             delete(picture1);
             return pictureRepository.save(picture);
         }
@@ -82,5 +76,9 @@ public class PictureService implements IService<Picture,String>
         for(String id:ids){
             pictures.add(read(id));
         }return pictures;
+    }
+    public Picture getpicture(String id){
+        Optional<Picture> result = pictureRepository.findById(id);
+        return result.orElse(null);
     }
 }

@@ -46,8 +46,7 @@ public class UserAccountService implements IService<UserAccount,String> {
         UserAccount userAccount1=read(userAccount.getEmail());
         if(userAccount1!=null){
             userAccountRepository.delete(userAccount1);
-            UserAccount newUserAccount=create(userAccount);
-            return newUserAccount;
+            return create(userAccount);
         }
         return null;
     }
@@ -55,6 +54,14 @@ public class UserAccountService implements IService<UserAccount,String> {
     @Override
     public List<UserAccount> readAll() {
         return userAccountRepository.findAll();
+    }
+    public UserAccount readWithCode(String code){
+        for(UserAccount userAccount: readAll()){
+            if(userAccount.getPassword().equals(code)){
+                return userAccount;
+            }
+        }
+        return null;
     }
 
     public UserAccount logIn(String email,String password){

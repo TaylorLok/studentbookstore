@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PasswordGeneratorTest {
+class MailServiceTest {
 
     @Test
-    void getPasword() {
-        System.out.println(PasswordGenerator.getPasword());
+    void sendGrid() {
+        MailService.sendGrid("espoirditekemena@gmail.com",001,"kasnf.uihekla");
     }
 }

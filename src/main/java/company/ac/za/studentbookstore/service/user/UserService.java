@@ -43,20 +43,17 @@ public class UserService implements IService<User,String>
     }
 
     @Override
-    public User read(String id)
-    {
+    public User read(String id) {
         Optional<User> result = userRepository.findById(id);
         return result.orElse(null);
     }
 
     @Override
-    public User update(User user)
-    {
+    public User update(User user) {
         User user1 = read(user.getEmail());
-        if(user1==null)
-        {
+        if(user1!=null) {
             delete(user1);
-            return userRepository.save(user);
+            return create(user);
         }
         return null;
     }

@@ -1,5 +1,6 @@
 package company.ac.za.studentbookstore.controller.user;
 
+import company.ac.za.studentbookstore.domain.user.User;
 import company.ac.za.studentbookstore.domain.user.UserAccount;
 import company.ac.za.studentbookstore.service.user.UserAccountService;
 import company.ac.za.studentbookstore.util.MyAppLog;
@@ -29,5 +30,13 @@ public class UserAccountController {
     public List<UserAccount> getAll(){
         //System.out.println("we are in");
         return userAccountService.readAll();
+    }
+    @GetMapping("readwithcode")
+    public UserAccount readwithcode(@RequestParam("id") String id){
+        return userAccountService.readWithCode(id);
+    }
+    @PostMapping("update")
+    public UserAccount update(@RequestBody UserAccount userAccount){
+        return userAccountService.update(userAccount);
     }
 }

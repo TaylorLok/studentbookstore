@@ -30,8 +30,8 @@ public class LanguageService implements IService<Language,String> {
     public Language delete(Language language) {
         Language language1=read(language.getId());
         if(language1!=null){
-            languageRep.delete(language);
-            return language;
+            languageRep.delete(language1);
+            return language1;
         }
         return null;
     }

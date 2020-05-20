@@ -9,7 +9,6 @@ import company.ac.za.studentbookstore.factory.domain.user.UserFactory;
 import company.ac.za.studentbookstore.service.user.UserAccountService;
 import company.ac.za.studentbookstore.service.user.UserService;
 import company.ac.za.studentbookstore.util.MGSample;
-import company.ac.za.studentbookstore.util.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

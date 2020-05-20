@@ -16,14 +16,13 @@ public class DepartmentController implements Icontroller<Department,String>
 
     @PostMapping("create")
     @Override
-    public Department create(@RequestBody Department department)
-    {
+    public Department create(@RequestBody Department department) {
         Department department1 = DepartmentFactory.getDepartment(department.getDepartment_Name(),department.getDescription());
         System.out.println(department.toString());
         return departmentService.create(department1);
     }
 
-    @GetMapping("delete")
+    @PostMapping("delete")
     @Override
     public Department delete(@RequestBody Department department)
     {
@@ -37,7 +36,7 @@ public class DepartmentController implements Icontroller<Department,String>
         return departmentService.read(id);
     }
 
-    @GetMapping("update")
+    @PostMapping("update")
     @Override
     public Department update(@RequestBody Department department)
     {

@@ -9,8 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DepartmentService implements IService<Department,String>
-{
+public class DepartmentService implements IService<Department,String> {
     private static DepartmentService departmentService;
 
     @Autowired
@@ -32,34 +31,32 @@ public class DepartmentService implements IService<Department,String>
     }
 
     @Override
-    public Department delete(Department department)
-    {
-        Optional<Department> result = departmentRepository.findById(department.getId());
-        if(result.get()!=null)
-        {
+    public Department delete(Department department) {
+        Department result = getDepartment(department.getId());
+        if(result!=null) {
             departmentRepository.delete(department);
-            return result.get();
+            return result;
         }
         return null;
     }
 
     @Override
-    public Department read(String id)
-    {
+    public Department read(String id) {
+      return getDepartment(id);
+    }
+
+    @Override
+    public Department update(Department department) {
+        Department department1 = read(department.getId());
+        if(department1!=null) {
+            delete(department1);
+            return create(department);
+        }
+        return null;
+    }
+    public Department getDepartment(String id){
         Optional<Department> result = departmentRepository.findById(id);
         return result.orElse(null);
-    }
-
-    @Override
-    public Department update(Department department)
-    {
-        Department department1 = read(department.getId());
-        if(department1==null)
-        {
-            delete(department1);
-            return departmentRepository.save(department);
-        }
-        return null;
     }
 
     @Override

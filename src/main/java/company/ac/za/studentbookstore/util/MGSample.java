@@ -11,8 +11,8 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 public class MGSample {
     // ...
     public static JsonNode sendSimpleMessage(String EMAIL_TO,int contentIndex, String code) throws UnirestException {
-        String API_KEY= "f9dd6d5089953c95467d0560ef4b1340-e5e67e3e-fa1b6648";
-        String YOUR_DOMAIN_NAME = "sandboxeb23bedf759347409706b34c746bbf5c.mailgun.org";
+        String API_KEY= "";
+        String YOUR_DOMAIN_NAME = "";
 
         HttpResponse<JsonNode> request = Unirest.post("https://api.mailgun.net/v3/" + YOUR_DOMAIN_NAME + "/messages")
                 .basicAuth("api", API_KEY)
@@ -40,9 +40,9 @@ public class MGSample {
     public static String getMessage(int contentIndex,String code){
         switch (contentIndex){
             case 001:
-                return "Thank you for registering on our system.\nto confirm your registration please click the following link\nhttp://102.130.119.251:40001/user/userAccount/"+code;
+                return "Thank you for registering on our system.\nto confirm your registration please tape on the following link\nhttp://HIDEN_DETAIL_HERE/user/userAccount/"+code;
             case 002:
-                return "Your book : "+code+"\n has been posted submitted successfully";
+                return "Your book : "+code+"\n has been posted submitted successfully.\n\nThanks for using our plate-form.";
         }
         return null;
     }

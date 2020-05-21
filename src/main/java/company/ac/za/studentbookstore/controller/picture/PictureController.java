@@ -11,15 +11,31 @@ import org.springframework.web.bind.annotation.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("sts/picture/")
 public class PictureController implements Icontroller<Picture, String> {
     @Autowired
     PictureService pictureService;
+
+    /***
+     * reading a file from resources folder.
+     * @param picture
+     * @return
+     * @throws IOException
+     */
+   private String fileName = Paths.get("").toAbsolutePath().toString()+"output.jpg";
+    //private ClassLoader classLoader = ImageResizer.class.getClassLoader();
+    private File file_save_path = new File(fileName);
+
+    private String fileName1 = Paths.get("").toAbsolutePath().toString()+"resized.jpg";
+   // private ClassLoader classLoader1 = ImageResizer.class.getClassLoader();
+    private File file_read_path = new File(fileName1);
 
     @PostMapping("create")
     @Override
@@ -31,7 +47,7 @@ public class PictureController implements Icontroller<Picture, String> {
         //Now we convert to byte array so that we can save it
         byte[] resizedPicture= convertToBytes();
         //Lastly we have to delete the file
-        deleteFile();
+        //deleteFile();
         // In this line we encode the byteArray so that we can save a small data
         Picture picture1 = PictureFactory.getPicture(encodeIntoByteArray(resizedPicture), picture.getDescription());
         //System.out.println(picture.toString());
@@ -44,7 +60,8 @@ public class PictureController implements Icontroller<Picture, String> {
         return pictureService.delete(picture);
     }
 
-    //I have converted the picture into a string taking a place of the id.
+    //I have converted the picture into a string taking a place of the id in the Object that i am returning.
+
     @GetMapping("read")
     @Override
     public Picture read(@RequestParam("id") String id) {
@@ -69,7 +86,7 @@ public class PictureController implements Icontroller<Picture, String> {
         //Now we convert to byte array so that we can save it
         byte[] resizedPicture= convertToBytes();
         //Lastly we have to delete the file
-        deleteFile();
+        //deleteFile();
         // In this line we encode the byteArray so that we can save a small data
         Picture picture1 = PictureFactory.getDecodablePicture(picture.getId(),encodeIntoByteArray(resizedPicture), picture.getDescription());
         //System.out.println(picture.toString());
@@ -148,26 +165,26 @@ public class PictureController implements Icontroller<Picture, String> {
     public void pictureWriter(byte[] bytes) throws IOException {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         BufferedImage bImage2 = ImageIO.read(bis);
-        ImageIO.write(bImage2, "jpg", new File("src/main/java/company/ac/za/studentbookstore/util/output.jpg"));
+        ImageIO.write(bImage2, "jpg", file_save_path);
         System.out.println("image created");
     }
 
-    public void deleteFile() {
-        try {
-            File f = new File("src/main/java/company/ac/za/studentbookstore/util/resized.jpg");           //file to be delete
-            if (f.delete()) {
-                System.out.println(f.getName() + " deleted");   //getting and printing the file name
-            } else {
-                System.out.println("failed to delete");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public void deleteFile() {
+//        try {
+//            File f = new File("src/main/java/company/ac/za/studentbookstore/util/resized.jpg");           //file to be delete
+//            if (f.delete()) {
+//                System.out.println(f.getName() + " deleted");   //getting and printing the file name
+//            } else {
+//                System.out.println("failed to delete");
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public byte[] convertToBytes() throws IOException {
-        File file = new File("src/main/java/company/ac/za/studentbookstore/util/resized.jpg");
-        FileInputStream fis = new FileInputStream(file);
+       // File file = new File("src/main/java/company/ac/za/studentbookstore/util/resized.jpg");
+        FileInputStream fis = new FileInputStream(file_read_path);
 
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         byte[] buf = new byte[1024];
